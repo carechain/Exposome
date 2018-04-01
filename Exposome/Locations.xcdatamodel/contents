@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14124.1" systemVersion="17D102" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Environment" representedClassName="Environment" syncable="YES" codeGenerationType="class">
+        <attribute name="air" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="soil" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="water" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="environment" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <entity name="Event" representedClassName="Event" syncable="YES" codeGenerationType="class">
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="creationDate" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="latitude" optional="YES" attributeType="Double" minValueString="-360" maxValueString="360" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" minValueString="-360" maxValueString="360" defaultValueString="0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="environment" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Environment" inverseName="event" inverseEntity="Environment" syncable="YES"/>
+        <relationship name="habitat" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Habitat" inverseName="event" inverseEntity="Habitat" syncable="YES"/>
+        <relationship name="pollen" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Pollen" inverseName="event" inverseEntity="Pollen" syncable="YES"/>
+        <relationship name="weather" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Weather" inverseName="event" inverseEntity="Weather" syncable="YES"/>
+    </entity>
+    <entity name="Habitat" representedClassName="Habitat" syncable="YES" codeGenerationType="class">
+        <attribute name="hazard" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="noise" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="stress" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="habitat" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <entity name="Pollen" representedClassName="Pollen" syncable="YES" codeGenerationType="class">
+        <attribute name="pollen1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pollen2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pollen3" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="value1" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="value2" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="value3" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="pollen" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <entity name="Weather" representedClassName="Weather" syncable="YES" codeGenerationType="class">
+        <attribute name="atmosphere" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="condition" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="humidity" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="icon" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="precipitation" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="temperature" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="uvindex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="winddirection" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="windspeed" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="NO" syncable="YES"/>
+        <relationship name="event" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Event" inverseName="weather" inverseEntity="Event" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Environment" positionX="315" positionY="351" width="128" height="105"/>
+        <element name="Event" positionX="99" positionY="189" width="128" height="165"/>
+        <element name="Habitat" positionX="324" positionY="360" width="128" height="105"/>
+        <element name="Pollen" positionX="306" positionY="342" width="128" height="150"/>
+        <element name="Weather" positionX="513" positionY="378" width="128" height="195"/>
+    </elements>
+</model>
