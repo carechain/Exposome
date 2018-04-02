@@ -8,23 +8,29 @@ import CoreLocation
 import CoreData
 import SwiftyJSON
 
-struct OpenWeatherMapService: WeatherServiceProtocol {
+typealias EXPWeatherCompletionHandler = (Weather?, EXPError?) -> Void
+
+protocol EXPWeatherServiceProtocol {
+    func retrieveWeatherInfo(_ location: CLLocation, completionHandler: @escaping EXPWeatherCompletionHandler)
+}
+
+struct EXPOpenWeatherMapService: EXPWeatherServiceProtocol {
   fileprivate let urlPath = "http://api.openweathermap.org/data/2.5/weather"
   var managedObjectContext: NSManagedObjectContext? = nil
 
-  func retrieveWeatherInfo(_ location: CLLocation, completionHandler: @escaping WeatherCompletionHandler) {
+  func retrieveWeatherInfo(_ location: CLLocation, completionHandler: @escaping EXPWeatherCompletionHandler) {
     let sessionConfig = URLSessionConfiguration.default
     let session = URLSession(configuration: sessionConfig)
 
     guard let url = generateRequestURL(location) else {
-      let error = SWError(errorCode: .urlError)
+      let error = EXPError(errorCode: .urlError)
       completionHandler(nil, error)
       return
     }
 
     guard managedObjectContext != nil else {
         print("NSManagedObjectContext == nil")
-        let error = SWError(errorCode: .invalidContext)
+        let error = EXPError(errorCode: .invalidContext)
         completionHandler(nil, error)
         return
     }
@@ -32,20 +38,20 @@ struct OpenWeatherMapService: WeatherServiceProtocol {
     let task = session.dataTask(with: url) { (data, response, error) in
       // Check network error
       guard error == nil else {
-        let error = SWError(errorCode: .networkRequestFailed)
+        let error = EXPError(errorCode: .networkRequestFailed)
         completionHandler(nil, error)
         return
       }
       
       // Check JSON serialization error
       guard let data = data else {
-        let error = SWError(errorCode: .jsonSerializationFailed)
+        let error = EXPError(errorCode: .jsonSerializationFailed)
         completionHandler(nil, error)
         return
       }
 
       guard let json = try? JSON(data: data) else {
-        let error = SWError(errorCode: .jsonParsingFailed)
+        let error = EXPError(errorCode: .jsonParsingFailed)
         completionHandler(nil, error)
         return
       }
@@ -58,7 +64,7 @@ struct OpenWeatherMapService: WeatherServiceProtocol {
         let windspeed = json["wind"]["speed"].double,
         let weatherCondition = json["weather"][0]["id"].int,
         let iconString = json["weather"][0]["icon"].string else {
-          let error = SWError(errorCode: .jsonParsingFailed)
+          let error = EXPError(errorCode: .jsonParsingFailed)
           completionHandler(nil, error)
           return
         }

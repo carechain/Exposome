@@ -8,30 +8,30 @@ import CoreLocation
 import CoreData
 import SwiftyJSON
 
-typealias BreezometerCompletionHandler = (Pollen?, Environment?, SWError?) -> Void
+typealias EXPBreezometerCompletionHandler = (Pollen?, Environment?, EXPError?) -> Void
 
-protocol BreezometerServiceProtocol {
-    func retrieveAirQualityInfo(_ location: CLLocation, completionHandler: @escaping BreezometerCompletionHandler)
+protocol EXPBreezometerServiceProtocol {
+    func retrieveAirQualityInfo(_ location: CLLocation, completionHandler: @escaping EXPBreezometerCompletionHandler)
 }
 
-struct BreezometerService: BreezometerServiceProtocol  {
+struct EXPBreezometerService: EXPBreezometerServiceProtocol  {
 
   fileprivate let urlPath = "https://api.breezometer.com/baqi/"
   var managedObjectContext: NSManagedObjectContext? = nil
 
-  func retrieveAirQualityInfo(_ location: CLLocation, completionHandler: @escaping BreezometerCompletionHandler) {
+  func retrieveAirQualityInfo(_ location: CLLocation, completionHandler: @escaping EXPBreezometerCompletionHandler) {
     let sessionConfig = URLSessionConfiguration.default
     let session = URLSession(configuration: sessionConfig)
 
     guard managedObjectContext != nil else {
         print("NSManagedObjectContext == nil")
-        let error = SWError(errorCode: .invalidContext)
+        let error = EXPError(errorCode: .invalidContext)
         completionHandler(nil, nil, error)
         return
     }
 
     guard let url = generateRequestURL(location) else {
-      let error = SWError(errorCode: .urlError)
+      let error = EXPError(errorCode: .urlError)
       completionHandler(nil, nil, error)
       return
     }
@@ -39,20 +39,20 @@ struct BreezometerService: BreezometerServiceProtocol  {
     let task = session.dataTask(with: url) { (data, response, error) in
       // Check network error
       guard error == nil else {
-        let error = SWError(errorCode: .networkRequestFailed)
+        let error = EXPError(errorCode: .networkRequestFailed)
         completionHandler(nil,nil, error)
         return
       }
       
       // Check JSON serialization error
       guard let data = data else {
-        let error = SWError(errorCode: .jsonSerializationFailed)
+        let error = EXPError(errorCode: .jsonSerializationFailed)
         completionHandler(nil,nil, error)
         return
       }
 
       guard let json = try? JSON(data: data) else {
-        let error = SWError(errorCode: .jsonParsingFailed)
+        let error = EXPError(errorCode: .jsonParsingFailed)
         completionHandler(nil,nil, error)
         return
       }
@@ -89,7 +89,7 @@ struct BreezometerService: BreezometerServiceProtocol  {
       // Get temperature, location and icon and check parsing error
       guard let airQuality = json["breezometer_aqi"].double
          else {
-          let error = SWError(errorCode: .jsonParsingFailed)
+          let error = EXPError(errorCode: .jsonParsingFailed)
             completionHandler(nil,nil, error)
           return
         }

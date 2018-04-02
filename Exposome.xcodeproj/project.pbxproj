@@ -13,11 +13,11 @@
 		042683E3206ED8FC006AC767 /* weathericons-regular-webfont.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 042683E2206ED8FC006AC767 /* weathericons-regular-webfont.ttf */; };
 		0429B8FC206CD96200953214 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0429B8FB206CD96200953214 /* HealthKit.framework */; };
 		0429B8FE206CD96800953214 /* HealthKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0429B8FD206CD96800953214 /* HealthKitUI.framework */; };
-		0451E9B62070C97D0095434A /* BreezometerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451E9B52070C97D0095434A /* BreezometerService.swift */; };
-		047C7B4F206FD6E500E86A62 /* WeatherServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047C7B4D206FD6E500E86A62 /* WeatherServiceProtocol.swift */; };
-		047C7B50206FD6E500E86A62 /* WeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047C7B4E206FD6E500E86A62 /* WeatherIcon.swift */; };
-		047C7B52206FD73F00E86A62 /* OpenWeatherMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047C7B51206FD73E00E86A62 /* OpenWeatherMapService.swift */; };
-		04BB5EEB206FD83D0081873C /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB5EEA206FD83D0081873C /* Error.swift */; };
+		044AC7AD20715CE500750DD0 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 044AC7AC20715CE400750DD0 /* README.md */; };
+		0451E9B62070C97D0095434A /* EXPBreezometerService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0451E9B52070C97D0095434A /* EXPBreezometerService.swift */; };
+		047C7B50206FD6E500E86A62 /* EXPWeatherIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047C7B4E206FD6E500E86A62 /* EXPWeatherIcon.swift */; };
+		047C7B52206FD73F00E86A62 /* EXPOpenWeatherMapService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047C7B51206FD73E00E86A62 /* EXPOpenWeatherMapService.swift */; };
+		04BB5EEB206FD83D0081873C /* EXPError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04BB5EEA206FD83D0081873C /* EXPError.swift */; };
 		9E4F7FDB3A7B51A010ADD480 /* Pods_Exposome.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D290C7F71DFFABF03251CF05 /* Pods_Exposome.framework */; };
 		E269C8421C6A31C4003E5DD9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269C8411C6A31C4003E5DD9 /* AppDelegate.swift */; };
 		E269C8441C6A31C4003E5DD9 /* EXPViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E269C8431C6A31C4003E5DD9 /* EXPViewController.swift */; };
@@ -53,12 +53,12 @@
 		042683E2206ED8FC006AC767 /* weathericons-regular-webfont.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "weathericons-regular-webfont.ttf"; sourceTree = "<group>"; };
 		0429B8FB206CD96200953214 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		0429B8FD206CD96800953214 /* HealthKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKitUI.framework; path = System/Library/Frameworks/HealthKitUI.framework; sourceTree = SDKROOT; };
-		0451E9B52070C97D0095434A /* BreezometerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BreezometerService.swift; sourceTree = "<group>"; };
+		044AC7AC20715CE400750DD0 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		0451E9B52070C97D0095434A /* EXPBreezometerService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXPBreezometerService.swift; sourceTree = "<group>"; };
 		0451E9B72070DBF70095434A /* Exposome.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Exposome.entitlements; sourceTree = "<group>"; };
-		047C7B4D206FD6E500E86A62 /* WeatherServiceProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherServiceProtocol.swift; sourceTree = "<group>"; };
-		047C7B4E206FD6E500E86A62 /* WeatherIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeatherIcon.swift; sourceTree = "<group>"; };
-		047C7B51206FD73E00E86A62 /* OpenWeatherMapService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OpenWeatherMapService.swift; sourceTree = "<group>"; };
-		04BB5EEA206FD83D0081873C /* Error.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		047C7B4E206FD6E500E86A62 /* EXPWeatherIcon.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXPWeatherIcon.swift; sourceTree = "<group>"; };
+		047C7B51206FD73E00E86A62 /* EXPOpenWeatherMapService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXPOpenWeatherMapService.swift; sourceTree = "<group>"; };
+		04BB5EEA206FD83D0081873C /* EXPError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EXPError.swift; sourceTree = "<group>"; };
 		AB45A96971D00F869490F239 /* Pods-Exposome.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Exposome.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Exposome/Pods-Exposome.debug.xcconfig"; sourceTree = "<group>"; };
 		D290C7F71DFFABF03251CF05 /* Pods_Exposome.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Exposome.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E269C83E1C6A31C4003E5DD9 /* Exposome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Exposome.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +129,37 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		04E315BE207239AD0094BC47 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0451E9B52070C97D0095434A /* EXPBreezometerService.swift */,
+				04BB5EEA206FD83D0081873C /* EXPError.swift */,
+				047C7B51206FD73E00E86A62 /* EXPOpenWeatherMapService.swift */,
+				047C7B4E206FD6E500E86A62 /* EXPWeatherIcon.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		04E315BF207239B60094BC47 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				E269C8431C6A31C4003E5DD9 /* EXPViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		04E315C0207239CE0094BC47 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E269C8481C6A31C5003E5DD9 /* Assets.xcassets */,
+				0451E9B72070DBF70095434A /* Exposome.entitlements */,
+				E269C84A1C6A31C5003E5DD9 /* LaunchScreen.storyboard */,
+				04268398206EACE2006AC767 /* Locations.xcdatamodel */,
+				E269C8451C6A31C5003E5DD9 /* Main.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		85DF4789C7956C5D5A24F3A5 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +172,7 @@
 		E269C8351C6A31C3003E5DD9 = {
 			isa = PBXGroup;
 			children = (
+				044AC7AC20715CE400750DD0 /* README.md */,
 				E269C8711C6BBDC4003E5DD9 /* MapKit.framework */,
 				E269C8401C6A31C4003E5DD9 /* Exposome */,
 				E269C8551C6A31C7003E5DD9 /* ExposomeTests */,
@@ -164,20 +196,12 @@
 		E269C8401C6A31C4003E5DD9 /* Exposome */ = {
 			isa = PBXGroup;
 			children = (
-				0451E9B72070DBF70095434A /* Exposome.entitlements */,
+				04E315C0207239CE0094BC47 /* Resources */,
+				04E315BF207239B60094BC47 /* ViewControllers */,
+				04E315BE207239AD0094BC47 /* Models */,
 				E269C8411C6A31C4003E5DD9 /* AppDelegate.swift */,
-				E269C8481C6A31C5003E5DD9 /* Assets.xcassets */,
-				0451E9B52070C97D0095434A /* BreezometerService.swift */,
-				04BB5EEA206FD83D0081873C /* Error.swift */,
-				E269C8431C6A31C4003E5DD9 /* EXPViewController.swift */,
 				042683E1206ED8FC006AC767 /* fonts */,
 				E269C84D1C6A31C5003E5DD9 /* Info.plist */,
-				E269C84A1C6A31C5003E5DD9 /* LaunchScreen.storyboard */,
-				04268398206EACE2006AC767 /* Locations.xcdatamodel */,
-				E269C8451C6A31C5003E5DD9 /* Main.storyboard */,
-				047C7B51206FD73E00E86A62 /* OpenWeatherMapService.swift */,
-				047C7B4E206FD6E500E86A62 /* WeatherIcon.swift */,
-				047C7B4D206FD6E500E86A62 /* WeatherServiceProtocol.swift */,
 			);
 			path = Exposome;
 			sourceTree = "<group>";
@@ -321,6 +345,7 @@
 			files = (
 				E269C84C1C6A31C5003E5DD9 /* LaunchScreen.storyboard in Resources */,
 				E269C8491C6A31C5003E5DD9 /* Assets.xcassets in Resources */,
+				044AC7AD20715CE500750DD0 /* README.md in Resources */,
 				042683E3206ED8FC006AC767 /* weathericons-regular-webfont.ttf in Resources */,
 				E269C8471C6A31C5003E5DD9 /* Main.storyboard in Resources */,
 			);
@@ -401,13 +426,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0451E9B62070C97D0095434A /* BreezometerService.swift in Sources */,
+				0451E9B62070C97D0095434A /* EXPBreezometerService.swift in Sources */,
 				E269C8441C6A31C4003E5DD9 /* EXPViewController.swift in Sources */,
-				047C7B52206FD73F00E86A62 /* OpenWeatherMapService.swift in Sources */,
-				047C7B50206FD6E500E86A62 /* WeatherIcon.swift in Sources */,
+				047C7B52206FD73F00E86A62 /* EXPOpenWeatherMapService.swift in Sources */,
+				047C7B50206FD6E500E86A62 /* EXPWeatherIcon.swift in Sources */,
 				04268399206EACE2006AC767 /* Locations.xcdatamodel in Sources */,
-				047C7B4F206FD6E500E86A62 /* WeatherServiceProtocol.swift in Sources */,
-				04BB5EEB206FD83D0081873C /* Error.swift in Sources */,
+				04BB5EEB206FD83D0081873C /* EXPError.swift in Sources */,
 				E269C8421C6A31C4003E5DD9 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

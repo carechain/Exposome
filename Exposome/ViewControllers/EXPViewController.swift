@@ -18,8 +18,8 @@ class EXPViewController: UIViewController, MKMapViewDelegate {
     var managedObjectContext: NSManagedObjectContext? = nil
     var events:[Event]?
     var lastEvent:Event?
-    var weatherService = OpenWeatherMapService()
-    var airQualityService = BreezometerService()
+    var weatherService = EXPOpenWeatherMapService()
+    var airQualityService = EXPBreezometerService()
 
     // UI
     @IBOutlet weak var weatherIcon: UILabel!
@@ -105,7 +105,7 @@ class EXPViewController: UIViewController, MKMapViewDelegate {
         self.windspeedLabel.text = String( describing: weather.windspeed!) + " m/s"
         if let iconString = weather.icon {
             print(iconString)
-            let weatherIcon = WeatherIcon(condition: Int(weather.condition), iconString: iconString)
+            let weatherIcon = EXPWeatherIcon(condition: Int(weather.condition), iconString: iconString)
             print(weatherIcon.iconText)
             self.weatherIcon.text = weatherIcon.iconText
         }
@@ -248,86 +248,80 @@ class EXPViewController: UIViewController, MKMapViewDelegate {
 }
 
 extension EXPViewController: CLLocationManagerDelegate {
+    
     func locationManagerDidPauseLocationUpdates(_ manager: CLLocationManager) {
         print("pause")
     }
+
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation:CLLocation = locations[0] as CLLocation
-        // Call stopUpdatingLocation() to stop listening for location updates,
-        // other wise this function will be called every time when user location changes.
-        // manager.stopUpdatingLocation()
-        let latitude = userLocation.coordinate.latitude
-        let longitude = userLocation.coordinate.longitude
-        let coord = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-        let timestamp = Date()
-        // Only log once an hour
 
-        if lastEvent != nil {
-            let delta = abs((lastEvent?.creationDate?.timeIntervalSinceNow)!)
-            if  delta <  TimeInterval(900) {
-                print("Skip this update")
-                return
-            }
-        }
-        print("Create event")
-        let location = CLLocation(coordinate: coord, altitude: 0, horizontalAccuracy: kCLLocationAccuracyBest, verticalAccuracy: kCLLocationAccuracyBest, timestamp: timestamp)
-        let event = Event(context: self.managedObjectContext!) as Event
-        event.creationDate = timestamp
-        event.latitude = latitude as NSNumber
-        event.longitude = longitude as NSNumber
-
-
-        let habitat = Habitat(context: self.managedObjectContext!) as Habitat
-        //habitat.stress = randomizer()
-        //habitat.noise = randomizer()
-        //habitat.hazard = randomizer()
-        event.habitat = habitat
-
-
-        CLGeocoder().reverseGeocodeLocation(location) { (placemarks, error) in
-            //print("placemarks \(String(describing: placemarks))")
-            if error == nil && (placemarks?.count)! > 0 {
-                let placemark = placemarks![0]
-                if let addressDict = placemark.addressDictionary, let coordinate = placemark.location?.coordinate {
-                    //print(addressDict)
-                    if let city = addressDict["City"] {
-                        event.address = city as! String
-                    }
-                    self.airQualityService.retrieveAirQualityInfo(location) { (pollen, environment, error) in
-                        if let error = error {
-                            print("Air Quality Service error", error)
-                            return
-                        }
-                        guard let pollen = pollen, let environment = environment  else {
-                            return
-                        }
-                        event.environment = environment
-                        event.pollen = pollen
-                        //print(pollen, environment)
-                        self.weatherService.retrieveWeatherInfo(location) { (weather, error) -> Void in
-                            DispatchQueue.main.async(execute: {
-                                if let error = error {
-                                    print("Weather Service error", error)
-                                    return
-                                }
-                                guard let weather = weather else {
-                                    return
-                                }
-                                event.weather = weather
-                                //print(weather)
-                                if self.saveContext() {
-                                    self.events?.append(event)
-                                    self.lastEvent = event
-                                    let lastIndex = (self.events?.count)!-1
-                                    self.stepper.maximumValue = Double(lastIndex)
-                                    self.updateDisplay(lastIndex)
-                                }
-                            })
-                        }
-                    }
+        for userLocation in locations {
+            // Only log once an hour
+            if lastEvent != nil {
+                let delta = abs((lastEvent?.creationDate?.timeIntervalSinceNow)!)
+                if  delta <  TimeInterval(10) {
+                    print("Skip this update")
+                    return
                 }
-            } else {
-                print("placemarks error ", error)
+            }
+
+            print("Create event")
+            let event = Event(context: self.managedObjectContext!) as Event
+            event.creationDate = userLocation.timestamp
+            event.latitude = userLocation.coordinate.latitude as NSNumber
+            event.longitude = userLocation.coordinate.longitude as NSNumber
+
+            let habitat = Habitat(context: self.managedObjectContext!) as Habitat
+            //habitat.stress = randomizer()
+            //habitat.noise = randomizer()
+            //habitat.hazard = randomizer()
+            event.habitat = habitat
+
+            CLGeocoder().reverseGeocodeLocation(userLocation) { (placemarks, error) in
+                //print("placemarks \(String(describing: placemarks))")
+                if error == nil && (placemarks?.count)! > 0 {
+                    let placemark = placemarks![0]
+                    if let addressDict = placemark.addressDictionary {
+                        //print(addressDict)
+                        if let city = addressDict["City"] as? String {
+                            event.address = city
+                        }
+                        self.airQualityService.retrieveAirQualityInfo(userLocation) { (pollen, environment, error) in
+                            if let error = error {
+                                print("Air Quality Service error", error)
+                                return
+                            }
+                            guard let pollen = pollen, let environment = environment  else {
+                                return
+                            }
+                            event.environment = environment
+                            event.pollen = pollen
+                            //print(pollen, environment)
+                            self.weatherService.retrieveWeatherInfo(userLocation) { (weather, error) -> Void in
+                                DispatchQueue.main.async(execute: {
+                                    if let error = error {
+                                        print("Weather Service error", error)
+                                        return
+                                    }
+                                    guard let weather = weather else {
+                                        return
+                                    }
+                                    event.weather = weather
+                                    //print(weather)
+                                    if self.saveContext() {
+                                        self.events?.append(event)
+                                        self.lastEvent = event
+                                        let lastIndex = (self.events?.count)!-1
+                                        self.stepper.maximumValue = Double(lastIndex)
+                                        self.updateDisplay(lastIndex)
+                                    }
+                                })
+                            }
+                        }
+                    }
+                } else {
+                    print("placemarks error ", error)
+                }
             }
         }
     }

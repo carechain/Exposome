@@ -5,7 +5,7 @@
 
 import Foundation
 
-struct SWError {
+struct EXPError {
   enum Code: Int {
     case urlError                 = -6000
     case networkRequestFailed     = -6001
