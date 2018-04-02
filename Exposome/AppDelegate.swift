@@ -1,11 +1,3 @@
-//
-//  AppDelegate.swift
-//  IOS9DrawRouteMapKitTutorial
-//
-//  Created by Arthur Knopper on 09/02/16.
-//  Copyright © 2016 Arthur Knopper. All rights reserved.
-//
-
 import UIKit
 
 @UIApplicationMain
@@ -13,12 +5,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-
-        let filePath = Bundle.main.path(forResource: "Info", ofType: "plist")!
-        let parameters = NSDictionary(contentsOfFile:filePath)
-        let appId = parameters!["BreezometerToken"]! as! String
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
         application.isStatusBarHidden = true 
         return true
     }

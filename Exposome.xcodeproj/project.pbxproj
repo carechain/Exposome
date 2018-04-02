@@ -152,7 +152,6 @@
 			isa = PBXGroup;
 			children = (
 				E269C8481C6A31C5003E5DD9 /* Assets.xcassets */,
-				0451E9B72070DBF70095434A /* Exposome.entitlements */,
 				E269C84A1C6A31C5003E5DD9 /* LaunchScreen.storyboard */,
 				04268398206EACE2006AC767 /* Locations.xcdatamodel */,
 				E269C8451C6A31C5003E5DD9 /* Main.storyboard */,
@@ -196,12 +195,13 @@
 		E269C8401C6A31C4003E5DD9 /* Exposome */ = {
 			isa = PBXGroup;
 			children = (
-				04E315C0207239CE0094BC47 /* Resources */,
-				04E315BF207239B60094BC47 /* ViewControllers */,
-				04E315BE207239AD0094BC47 /* Models */,
 				E269C8411C6A31C4003E5DD9 /* AppDelegate.swift */,
+				0451E9B72070DBF70095434A /* Exposome.entitlements */,
 				042683E1206ED8FC006AC767 /* fonts */,
 				E269C84D1C6A31C5003E5DD9 /* Info.plist */,
+				04E315BE207239AD0094BC47 /* Models */,
+				04E315C0207239CE0094BC47 /* Resources */,
+				04E315BF207239B60094BC47 /* ViewControllers */,
 			);
 			path = Exposome;
 			sourceTree = "<group>";
@@ -296,6 +296,7 @@
 					E269C83D1C6A31C4003E5DD9 = {
 						CreatedOnToolsVersion = 7.2.1;
 						DevelopmentTeam = BH7Z7SE66T;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
 								enabled = 1;
@@ -514,6 +515,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Rebaser AB (BH7Z7SE66T)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -568,6 +570,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Rebaser AB (BH7Z7SE66T)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -595,12 +598,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Exposome/Exposome.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BH7Z7SE66T;
 				INFOPLIST_FILE = "$(SRCROOT)/Exposome/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.carechain.exposome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -611,12 +617,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Exposome/Exposome.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = BH7Z7SE66T;
 				INFOPLIST_FILE = "$(SRCROOT)/Exposome/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.carechain.exposome;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
