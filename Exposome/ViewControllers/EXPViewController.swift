@@ -172,7 +172,7 @@ class EXPViewController: UIViewController, MKMapViewDelegate {
         DispatchQueue.main.async { [unowned self] in
             self.locationManager = CLLocationManager()
             self.locationManager?.delegate = self
-            self.locationManager?.desiredAccuracy = kCLLocationAccuracyThreeKilometers
+            self.locationManager?.desiredAccuracy = kCLLocationAccuracyBest
 
             //kCLLocationAccuracyBest
             while !CLLocationManager.locationServicesEnabled() {
@@ -184,7 +184,7 @@ class EXPViewController: UIViewController, MKMapViewDelegate {
             self.locationManager?.startUpdatingLocation()
             self.locationManager?.allowsBackgroundLocationUpdates = true
             if self.lastEvent != nil {
-                self.locationManager?.allowDeferredLocationUpdates(untilTraveled: 1000, timeout: 900)
+                self.locationManager?.allowDeferredLocationUpdates(untilTraveled: 1000, timeout: 3600)
                 print("allowDeferredLocationUpdates")
             }
          }
@@ -318,6 +318,7 @@ extension EXPViewController: CLLocationManagerDelegate {
             }
         }
     }
+
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error)
     {
         print("Error \(String(describing: error))")
